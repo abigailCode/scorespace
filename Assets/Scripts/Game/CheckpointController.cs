@@ -7,7 +7,6 @@ public class CheckpointController : MonoBehaviour
 
     public GameObject mainCamera;
     public GameObject levelController;
-    private string nextLevel; 
  
 
     void Start() {
