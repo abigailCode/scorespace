@@ -205,8 +205,6 @@ public class GameManager : MonoBehaviour {
        // StopAllCoroutines();
         TakePicture("GameOverPanel");
         GameObject.Find("HUD").GetComponent<TimerController>().StopTimer();
-        GameObject.Find("HUD").GetComponent<TimerController>().SaveTime();
-        Debug.Log("GUARDADOOOO: " + PlayerPrefs.GetFloat("time"));
         //AudioManager.Instance.PlayMusic("gameOverTheme");
     }
 
@@ -214,8 +212,14 @@ public class GameManager : MonoBehaviour {
     {
         AudioManager.Instance.StopSFX();
         StopAllCoroutines();
-        TakePicture("GameWonPanel");
-        AudioManager.Instance.PlayMusic("gameWonTheme");
+        //TakePicture("GameWonPanel");
+        //AudioManager.Instance.PlayMusic("gameWonTheme");
+        GameObject hud = GameObject.Find("HUD");
+        GameObject panel = hud.transform.Find("GameWonPanel").gameObject;
+        panel.SetActive(true);
+        hud.GetComponent<TimerController>().SaveTime();
+        GameObject.Find("LevelController").GetComponent<LevelController>().SaveCounter();
+
     }
 
     void TakePicture(string panelName) {

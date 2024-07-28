@@ -1,27 +1,33 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class MenuController : MonoBehaviour {
     public MenuController menuController;
     public GameObject credits;
     public GameObject settings;
     public GameObject menuPanel;
+    public GameObject ranking;
+
+    public TMP_InputField inputField;
+
 
     void Start() {
-        if (credits != null) AudioManager.Instance.PlayMusic("menuTheme"); // Play in the menu
+        //   if (credits != null) AudioManager.Instance.PlayMusic("menuTheme"); // Play in the menu
+        if (inputField != null) inputField.text = PlayerPrefs.GetString("username", "");
     }
 
     public void PerformAction(string action, string scene = "") {
-        if (!AudioManager.Instance.IsPlayingCountDown()) AudioManager.Instance.PlaySFX("buttonClicked");
+       // if (!AudioManager.Instance.IsPlayingCountDown()) AudioManager.Instance.PlaySFX("buttonClicked");
 
         switch (action) {
             case "GoToIntro":
-                AudioManager.Instance.PlayMusic("introTheme");
+                //AudioManager.Instance.PlayMusic("introTheme");
                 SCManager.Instance.LoadScene("Intro");
                 break;
             case "StartGame":
-                AudioManager.Instance.PlayMusic("mainTheme");
-                SCManager.Instance.LoadScene("Level1");
+               // AudioManager.Instance.PlayMusic("mainTheme");
+                SCManager.Instance.LoadScene("Game");
                 break;
             case "ShowSettings":
                 // SCManager.instance.LoadScene("GeneralSettingsScene");
@@ -43,8 +49,17 @@ public class MenuController : MonoBehaviour {
                 menuPanel.GetComponent<Animator>().enabled = false;
 
                 break;
-            case "GoToRanking":
-                SCManager.Instance.LoadScene("RankingScene");
+            case "SaveRate":
+                PlayerPrefs.SetString("username", inputField.text);
+                FirebaseInit.Instance.SaveRanking(inputField.text, PlayerPrefs.GetInt("score", 0), PlayerPrefs.GetFloat("time", 0));
+                SCManager.Instance.LoadScene("Menu");
+                break;
+            case "ShowRanking":
+                ranking.SetActive(true);
+                FirebaseInit.Instance.LoadRanking();
+                break;
+            case "HideRanking":
+                ranking.SetActive(false);
                 break;
             case "GoToMenu":
                 SCManager.Instance.LoadScene("Menu");
@@ -77,6 +92,12 @@ public class MenuController : MonoBehaviour {
     public void ShowCredits() => menuController.PerformAction("ShowCredits");
 
     public void HideCredits() => menuController.PerformAction("HideCredits");
+
+    public void ShowRanking() => menuController.PerformAction("ShowRanking");
+
+    public void SaveRate() => menuController.PerformAction("SaveRate");
+
+    public void HideRanking() => menuController.PerformAction("HideRanking");
 
     public void GoToRanking() => menuController.PerformAction("GoToRanking");
 

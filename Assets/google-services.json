@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "411173312812",
+    "project_id": "speedrunning-jam",
+    "storage_bucket": "speedrunning-jam.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:411173312812:android:5674d12b238e0e9847f489",
+        "android_client_info": {
+          "package_name": "com.flejecute.speedrunning"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCGm-or8IQGT8heO8FQ91bG4iOVHZ87M9w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

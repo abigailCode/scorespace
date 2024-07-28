@@ -18,7 +18,6 @@ public class TimerController : MonoBehaviour
     public void StopTimer()
     {
         //AudioManager.Instance.StopSFX();
-        Debug.Log("asdasd");
         StopCoroutine(_timerCoroutine);
     }
 
@@ -35,7 +34,7 @@ public class TimerController : MonoBehaviour
         //GameOver();
     }
 
-    string FormatTime(float time)
+    public string FormatTime(float time)
     {
         string minutes = (Mathf.Floor(Mathf.Round(time) / 60)).ToString();
         string seconds = (Mathf.Round(time) % 60).ToString();
@@ -49,8 +48,8 @@ public class TimerController : MonoBehaviour
 
     public void SaveTime()
     {
-        Debug.Log("ergerasdasd");
         PlayerPrefs.SetFloat("time", remainingTime);
+        GameObject.Find("Time").GetComponent<TextMeshProUGUI>().text = FormatTime(remainingTime);
     }
 
 }

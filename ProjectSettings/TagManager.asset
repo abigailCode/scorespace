@@ -7,6 +7,7 @@ TagManager:
   - Ground
   - Enemy
   - Water
+  - PickUp
   layers:
   - Default
   - TransparentFX

@@ -29,6 +29,8 @@ public class MovementController : MonoBehaviour
     private float lastDamageTime;
     public float damageInterval = 1f; // Intervalo de tiempo entre decrementos de HP
 
+    public GameObject levelController;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -107,6 +109,10 @@ public class MovementController : MonoBehaviour
         }else if (other.tag == "Water")
         {
             GameObject.Find("Pointer").GetComponent<HPController>().IncrementHp(10f);
+            Destroy(other.transform.parent.gameObject);
+        }else if(other.tag == "PickUp")
+        {
+            levelController.GetComponent<LevelController>().IncrementCounter(1);
             Destroy(other.transform.parent.gameObject);
         }
 
