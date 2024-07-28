@@ -199,12 +199,13 @@ public class GameManager : MonoBehaviour {
     public void GameOver()
     {
         //SCManager.Instance.LoadScene("Game");
-        //AudioManager.Instance.StopSFX();
+        AudioManager.Instance.StopSFX();
         //_countdownText.text = "";
         //_countdownText.gameObject.SetActive(false);
-       // StopAllCoroutines();
+        StopAllCoroutines();
         TakePicture("GameOverPanel");
         GameObject.Find("HUD").GetComponent<TimerController>().StopTimer();
+        Time.timeScale = 0f;
         //AudioManager.Instance.PlayMusic("gameOverTheme");
     }
 

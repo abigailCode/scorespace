@@ -21,6 +21,12 @@ public class TimerController : MonoBehaviour
         StopCoroutine(_timerCoroutine);
     }
 
+    public void RestartTimer()
+    {
+        _timerCoroutine = StartCoroutine(UpdateTimer());
+
+    }
+
     IEnumerator UpdateTimer()
     {
         _timerText.text = FormatTime(remainingTime);

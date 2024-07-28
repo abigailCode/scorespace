@@ -105,13 +105,16 @@ public class MovementController : MonoBehaviour
     {
         if (other.tag == "Enemy")
         {
+            AudioManager.Instance.PlaySFX("damage");
             GameObject.Find("Pointer").GetComponent<HPController>().DecrementHp(20f);
         }else if (other.tag == "Water")
         {
+            AudioManager.Instance.PlaySFX("water");
             GameObject.Find("Pointer").GetComponent<HPController>().IncrementHp(10f);
             Destroy(other.transform.parent.gameObject);
         }else if(other.tag == "PickUp")
         {
+            AudioManager.Instance.PlaySFX("pickup");
             levelController.GetComponent<LevelController>().IncrementCounter(1);
             Destroy(other.transform.parent.gameObject);
         }
@@ -124,6 +127,7 @@ public class MovementController : MonoBehaviour
         {
             if (Time.time - lastDamageTime >= damageInterval)
             {
+                AudioManager.Instance.PlaySFX("damage");
                 lastDamageTime = Time.time;
                 GameObject.Find("Pointer").GetComponent<HPController>().DecrementHp(5f);
             }

@@ -8,17 +8,19 @@ public class MenuController : MonoBehaviour {
     public GameObject settings;
     public GameObject menuPanel;
     public GameObject ranking;
+    public GameObject losePanel;
+    public GameObject levelController;
 
     public TMP_InputField inputField;
 
 
     void Start() {
-        //   if (credits != null) AudioManager.Instance.PlayMusic("menuTheme"); // Play in the menu
+          if (credits != null) AudioManager.Instance.PlayMusic("menuTheme"); // Play in the menu
         if (inputField != null) inputField.text = PlayerPrefs.GetString("username", "");
     }
 
     public void PerformAction(string action, string scene = "") {
-       // if (!AudioManager.Instance.IsPlayingCountDown()) AudioManager.Instance.PlaySFX("buttonClicked");
+        if (!AudioManager.Instance.IsPlayingCountDown()) AudioManager.Instance.PlaySFX("buttonClicked");
 
         switch (action) {
             case "GoToIntro":
@@ -26,8 +28,18 @@ public class MenuController : MonoBehaviour {
                 SCManager.Instance.LoadScene("Intro");
                 break;
             case "StartGame":
-               // AudioManager.Instance.PlayMusic("mainTheme");
+                if (Time.timeScale == 0) Time.timeScale = 1f;
+                AudioManager.Instance.PlayMusic("mainTheme");
                 SCManager.Instance.LoadScene("Game");
+                break;
+            case "RestartGame":
+                if (Time.timeScale == 0) Time.timeScale = 1f;
+                GameObject.Find("Pointer").GetComponent<HPController>().IncrementHp(100f);
+                GameObject.Find("HUD").GetComponent<TimerController>().RestartTimer();
+                losePanel.SetActive(false);
+                levelController.GetComponent<LevelController>().SetLevel(-1);
+                // AudioManager.Instance.PlayMusic("mainTheme");
+                //SCManager.Instance.LoadScene("Game");
                 break;
             case "ShowSettings":
                 // SCManager.instance.LoadScene("GeneralSettingsScene");
@@ -62,6 +74,7 @@ public class MenuController : MonoBehaviour {
                 ranking.SetActive(false);
                 break;
             case "GoToMenu":
+                if (Time.timeScale == 0) Time.timeScale = 1f;
                 SCManager.Instance.LoadScene("Menu");
                 break;
             //case "Resume":
@@ -84,6 +97,8 @@ public class MenuController : MonoBehaviour {
     public void GoToIntro() => menuController.PerformAction("GoToIntro");
 
     public void StartGame() => menuController.PerformAction("StartGame");
+
+    public void RestartGame() => menuController.PerformAction("RestartGame");
 
     public void ShowSettings() => menuController.PerformAction("ShowSettings");
 

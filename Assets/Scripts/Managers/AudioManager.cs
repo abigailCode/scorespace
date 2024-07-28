@@ -19,12 +19,13 @@ public class AudioManager : MonoBehaviour {
     }
 
     void LoadSFXClips() {
-        _sfxClips["countdown"] = Resources.Load<AudioClip>("SFX/countdownSFX");
+        _sfxClips["fall"] = Resources.Load<AudioClip>("SFX/fall");
         _sfxClips["buttonClicked"] = Resources.Load<AudioClip>("SFX/buttonClickedSFX");
-        _sfxClips["jump"] = Resources.Load<AudioClip>("SFX/jumpSFX");
-        _sfxClips["portal"] = Resources.Load<AudioClip>("SFX/portalSFX");
+        _sfxClips["spawn"] = Resources.Load<AudioClip>("SFX/spawn");
+        _sfxClips["damage"] = Resources.Load<AudioClip>("SFX/damage");
         _sfxClips["fall"] = Resources.Load<AudioClip>("SFX/fallSFX");
-        _sfxClips["enemyConversion"] = Resources.Load<AudioClip>("SFX/enemyConversionSFX");
+        _sfxClips["water"] = Resources.Load<AudioClip>("SFX/water");
+        _sfxClips["pickup"] = Resources.Load<AudioClip>("SFX/pickup");
     }
 
     void LoadMusicClips() {

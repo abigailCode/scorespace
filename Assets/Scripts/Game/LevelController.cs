@@ -25,6 +25,7 @@ public class LevelController : MonoBehaviour
         currentLevel = level;
         player.GetComponent<CharacterController>().enabled = false;
         player.transform.position = _playerSpawnPoints[level].position;
+        AudioManager.Instance.PlaySFX("spawn");
         player.GetComponent<CharacterController>().enabled = true;
 
     }

@@ -2390,10 +2390,10 @@ RectTransform:
   - {fileID: 9052025482268099190}
   - {fileID: 1458170640332509908}
   - {fileID: 3178933248016659210}
-  - {fileID: 2865898810510785624}
   - {fileID: 5003732114903383502}
   - {fileID: 5928800439522448148}
   - {fileID: 2123669919737930821}
+  - {fileID: 2865898810510785624}
   - {fileID: 4685206326181584924}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2481,6 +2481,8 @@ MonoBehaviour:
   credits: {fileID: 0}
   settings: {fileID: 0}
   menuPanel: {fileID: 0}
+  ranking: {fileID: 0}
+  inputField: {fileID: 0}
 --- !u!114 &6843057965995272208
 MonoBehaviour:
   m_ObjectHideFlags: 0
