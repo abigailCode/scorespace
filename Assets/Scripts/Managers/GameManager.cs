@@ -204,6 +204,9 @@ public class GameManager : MonoBehaviour {
         //_countdownText.gameObject.SetActive(false);
        // StopAllCoroutines();
         TakePicture("GameOverPanel");
+        GameObject.Find("HUD").GetComponent<TimerController>().StopTimer();
+        GameObject.Find("HUD").GetComponent<TimerController>().SaveTime();
+        Debug.Log("GUARDADOOOO: " + PlayerPrefs.GetFloat("time"));
         //AudioManager.Instance.PlayMusic("gameOverTheme");
     }
 

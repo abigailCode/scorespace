@@ -13,7 +13,7 @@ public class HPController : MonoBehaviour
     {
         if (hpCube != null)
         {
-            initialHpCubeHeight = hpCube.transform.localScale.y;
+            initialHpCubeHeight = hpCube.transform.localScale.x;
         }
     }
 
@@ -21,9 +21,9 @@ public class HPController : MonoBehaviour
     {
         if (hpCube != null)
         {
-            float heightPercentage = hp / 100f; 
+            float heightPercentage = hp / 100f;
             Vector3 newScale = hpCube.transform.localScale;
-            newScale.y = initialHpCubeHeight * heightPercentage;
+            newScale.x = initialHpCubeHeight * heightPercentage;
             hpCube.transform.localScale = newScale;
         }
     }
@@ -36,10 +36,21 @@ public class HPController : MonoBehaviour
             hp -= damage;
             UpdateHpCubeHeight();
         }
-        else
+        if (hp <= 0)
         {
             hp = 0;
             GameManager.Instance.GameOver();
+        }
+    }
+
+
+    public void IncrementHp(float heal)
+    {
+        if (hp < 100)
+        {
+            hp += heal;
+            if (hp > 100) hp = 100;
+            UpdateHpCubeHeight();
         }
     }
 }

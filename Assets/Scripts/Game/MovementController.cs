@@ -26,10 +26,14 @@ public class MovementController : MonoBehaviour
     public float fallVelocity;
     public float jumpForce;
 
+    private float lastDamageTime;
+    public float damageInterval = 1f; // Intervalo de tiempo entre decrementos de HP
+
     // Start is called before the first frame update
     void Start()
     {
         player = GetComponent<CharacterController>();
+        lastDamageTime = -damageInterval;
     }
 
     // Update is called once per frame
@@ -97,13 +101,26 @@ public class MovementController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("ENTROOOO");
         if (other.tag == "Enemy")
         {
-
-            Debug.Log("Y AAQUIII");
             GameObject.Find("Pointer").GetComponent<HPController>().DecrementHp(20f);
+        }else if (other.tag == "Water")
+        {
+            GameObject.Find("Pointer").GetComponent<HPController>().IncrementHp(10f);
+            Destroy(other.transform.parent.gameObject);
         }
 
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.tag == "Enemy")
+        {
+            if (Time.time - lastDamageTime >= damageInterval)
+            {
+                lastDamageTime = Time.time;
+                GameObject.Find("Pointer").GetComponent<HPController>().DecrementHp(5f);
+            }
+        }
     }
 }

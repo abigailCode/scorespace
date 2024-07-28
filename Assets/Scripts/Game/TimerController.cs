@@ -17,7 +17,8 @@ public class TimerController : MonoBehaviour
 
     public void StopTimer()
     {
-        AudioManager.Instance.StopSFX();
+        //AudioManager.Instance.StopSFX();
+        Debug.Log("asdasd");
         StopCoroutine(_timerCoroutine);
     }
 
@@ -28,7 +29,8 @@ public class TimerController : MonoBehaviour
         {
             yield return new WaitForSeconds(1);
             _timerText.text = FormatTime(++remainingTime);
-           // if (remainingTime <= 15) ShowCountdown();
+            GameObject.Find("Pointer").GetComponent<HPController>().DecrementHp(1f);
+            // if (remainingTime <= 15) ShowCountdown();
         }
         //GameOver();
     }
@@ -44,5 +46,11 @@ public class TimerController : MonoBehaviour
     }
 
     public void RestartTime(float time) => remainingTime = time;
+
+    public void SaveTime()
+    {
+        Debug.Log("ergerasdasd");
+        PlayerPrefs.SetFloat("time", remainingTime);
+    }
 
 }
