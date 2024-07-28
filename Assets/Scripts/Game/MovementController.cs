@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Collections.Specialized;
 
+
 public class MovementController : MonoBehaviour
 {
     public float horizontalMove;
@@ -92,5 +93,17 @@ public class MovementController : MonoBehaviour
         fallVelocity = jumpForce;
         movePlayer.y = fallVelocity;
         
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("ENTROOOO");
+        if (other.tag == "Enemy")
+        {
+
+            Debug.Log("Y AAQUIII");
+            GameObject.Find("Pointer").GetComponent<HPController>().DecrementHp(20f);
+        }
+
     }
 }

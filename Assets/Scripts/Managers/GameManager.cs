@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -8,12 +9,12 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
     public static GameManager Instance { get; private set; }
-    [SerializeField] float remainingTime = 100f;
     CameraShake cameraShake;
     public bool isActive = false;
-    TextMeshProUGUI _timerText, _countdownText;
+
     RawImage _screenshotImage;
-    Coroutine _timerCoroutine;
+
+
 
 
    // public int totalBalls = 0;
@@ -193,22 +194,22 @@ public class GameManager : MonoBehaviour {
         if (!PlayerPrefs.HasKey("levelsPassed")) PlayerPrefs.SetInt("levelsPassed", 0);
     }
 
+   
+
     public void GameOver()
     {
-        SCManager.Instance.LoadScene("Game");
+        //SCManager.Instance.LoadScene("Game");
         //AudioManager.Instance.StopSFX();
         //_countdownText.text = "";
         //_countdownText.gameObject.SetActive(false);
-        //StopAllCoroutines();
-        //TakePicture("GameOverPanel");
+       // StopAllCoroutines();
+        TakePicture("GameOverPanel");
         //AudioManager.Instance.PlayMusic("gameOverTheme");
     }
 
     public void GameWon()
     {
         AudioManager.Instance.StopSFX();
-        if (_countdownText != null) _countdownText.text = "";
-        if (_countdownText != null) _countdownText.gameObject.SetActive(false);
         StopAllCoroutines();
         TakePicture("GameWonPanel");
         AudioManager.Instance.PlayMusic("gameWonTheme");
@@ -223,7 +224,7 @@ public class GameManager : MonoBehaviour {
         _screenshotImage = panel.transform.Find("Screenshot").GetComponent<RawImage>();
         CaptureScreenshot();
         StartCoroutine(ShowPanel(panel));
-        if (_countdownText != null) _countdownText.text = "";
+    
     }
 
     IEnumerator ShowPanel(GameObject panel) {
@@ -250,53 +251,7 @@ public class GameManager : MonoBehaviour {
         _screenshotImage.texture = texture;
     }
 
-    public void StartTimer()
-    {
-        _timerText = GameObject.Find("Timer").GetComponent<TextMeshProUGUI>();
-        _timerCoroutine = StartCoroutine(UpdateTimer());
-    }
-
-    public void StopTimer()
-    {
-        AudioManager.Instance.StopSFX();
-        StopCoroutine(_timerCoroutine);
-    }
-
-    IEnumerator UpdateTimer()
-    {
-        _timerText.text = FormatTime(remainingTime);
-        while (remainingTime > 0)
-        {
-            yield return new WaitForSeconds(1);
-            _timerText.text = FormatTime(--remainingTime);
-            if (remainingTime <= 15) ShowCountdown();
-        }
-        GameOver();
-    }
-
-    string FormatTime(float time)
-    {
-        string minutes = (Mathf.Floor(Mathf.Round(time) / 60)).ToString();
-        string seconds = (Mathf.Round(time) % 60).ToString();
-
-        if (minutes.Length == 1) minutes = "0" + minutes;
-        if (seconds.Length == 1) seconds = "0" + seconds;
-        return minutes + ":" + seconds;
-    }
-
-    void ShowCountdown()
-    {
-        if (_countdownText == null)
-        {
-            cameraShake = GameObject.Find("Main Camera").GetComponent<CameraShake>();
-            GameObject countdown = GameObject.Find("CountDown");
-            _countdownText = countdown.GetComponent<TextMeshProUGUI>();
-            countdown.GetComponent<Animator>().enabled = true;
-        }
-        AudioManager.Instance.PlaySFX("countdown");
-        cameraShake.Shake(0.5f, 0.7f);
-        _countdownText.text = remainingTime.ToString();
-    }
-
-    public void RestartTime(float time) => remainingTime = time;
+   
+  
+   
 }

@@ -37,8 +37,6 @@ public class CameraBehaviour : MonoBehaviour {
 
     public void SetCameraPosition(int position)
     {
-        Debug.Log("POSITION: "+ position);
-
         transform.position = _rotationPoints[position].position;
         transform.rotation = _rotationPoints[position].rotation;
     }
