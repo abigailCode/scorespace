@@ -52,13 +52,14 @@ public class FirebaseInit : MonoBehaviour {
         int startItem = page * itemsPerPage;
         int endItem = Mathf.Min(startItem + itemsPerPage, rankings.Count);
 
+        int maxCount = PlayerPrefs.GetInt("maxCount", 0);
         for (int i = startItem; i < endItem; i++)
         {
             Ranking ranking = rankings[i];
             GameObject newItem = Instantiate(listItemPrefab, contentPanel);
             newItem.transform.Find("UserText").GetComponent<TextMeshProUGUI>().text = ranking.username;
             newItem.transform.Find("TimeText").GetComponent<TextMeshProUGUI>().text = FormatTime(ranking.time);
-            newItem.transform.Find("ScoreText").GetComponent<TextMeshProUGUI>().text = ranking.score.ToString("D3");
+            newItem.transform.Find("ScoreText").GetComponent<TextMeshProUGUI>().text = $"{ranking.score.ToString("D3")}/{maxCount.ToString("D3")}";
             if (i == 0) newItem.transform.Find("Gold").gameObject.SetActive(true);
             if (i == 1) newItem.transform.Find("Silver").gameObject.SetActive(true);
             if (i == 2) newItem.transform.Find("Bronze").gameObject.SetActive(true);

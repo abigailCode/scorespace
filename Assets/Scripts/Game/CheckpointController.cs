@@ -42,7 +42,7 @@ public class CheckpointController : MonoBehaviour
     void NextLevel()
     {
         int currentLevel = PlayerPrefs.GetInt("level", 0) + 1;
-        if (currentLevel == 4) GameManager.Instance.GameWon();
+        if (currentLevel == 5) GameManager.Instance.GameWon();
         else
         {
             PlayerPrefs.SetInt("level", currentLevel);

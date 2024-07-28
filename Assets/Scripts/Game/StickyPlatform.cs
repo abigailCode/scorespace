@@ -25,7 +25,10 @@ public class StickyPlatform : MonoBehaviour
 
     void FollowRotation()
     {
-        transform.position = rotatingCube.position + rotatingCube.rotation * initialOffset;
+        Vector3 newPosition = rotatingCube.position + rotatingCube.rotation * initialOffset;
+        newPosition.y = transform.position.y; // Preserve the original Y-axis position
+
+        transform.position = newPosition;
         transform.rotation = rotatingCube.rotation * initialRotationOffset;
     }
 
