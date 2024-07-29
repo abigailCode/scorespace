@@ -124,6 +124,18 @@ MonoBehaviour:
     m_Localized: RANKING
     m_Metadata:
       m_Items: []
+  - m_Id: 822282471395328
+    m_Localized: '| USERNAME'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 822395457556480
+    m_Localized: '| TIME |'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 823670773436416
+    m_Localized: GEMS
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:

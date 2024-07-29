@@ -119,6 +119,18 @@ MonoBehaviour:
     m_Key: ranking
     m_Metadata:
       m_Items: []
+  - m_Id: 822282471395328
+    m_Key: username
+    m_Metadata:
+      m_Items: []
+  - m_Id: 822395457556480
+    m_Key: time
+    m_Metadata:
+      m_Items: []
+  - m_Id: 823670773436416
+    m_Key: gems
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
