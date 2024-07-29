@@ -81,12 +81,20 @@ public class MovementController : MonoBehaviour
 
     void SetGravity()
     {
-        if (player.isGrounded)
-        {
-            fallVelocity = -gravity * Time.deltaTime;
-            movePlayer.y = fallVelocity;
-        }
-        else
+        //if (player.isGrounded)
+        //{
+        //    fallVelocity = -gravity * Time.deltaTime;
+        //    movePlayer.y = fallVelocity;
+        //}
+        //else
+        //{
+        //    fallVelocity -= gravity * Time.deltaTime;
+        //    movePlayer.y = fallVelocity;
+        //}
+        if (player.isGrounded) {
+            fallVelocity = -gravity * Time.deltaTime - 0.0001f;
+            movePlayer.y = fallVelocity; //magic number
+        } else
         {
             fallVelocity -= gravity * Time.deltaTime;
             movePlayer.y = fallVelocity;
