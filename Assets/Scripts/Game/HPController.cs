@@ -41,6 +41,7 @@ public class HPController : MonoBehaviour
             hp = 0;
             GameManager.Instance.GameOver();
         }
+        
     }
 
 
@@ -53,4 +54,6 @@ public class HPController : MonoBehaviour
             UpdateHpCubeHeight();
         }
     }
+
+    public float GetHp() { return hp; }
 }

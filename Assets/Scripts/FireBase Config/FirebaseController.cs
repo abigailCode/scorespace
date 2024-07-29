@@ -65,6 +65,15 @@ public class FirebaseController {
             } else {
                 Debug.LogError("Failed to read scores: " + task.Exception);
             }
+            rankings.Sort((x, y) => {
+                int timeComparison = x.time.CompareTo(y.time);
+                if (timeComparison == 0)
+                {
+                    // If times are equal, compare by score (higher score is better, so we reverse the comparison)
+                    return y.score.CompareTo(x.score);
+                }
+                return timeComparison;
+            });
             FirebaseInit.Instance.ShowPage(0, rankings);
         });
     }

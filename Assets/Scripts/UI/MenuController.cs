@@ -62,6 +62,7 @@ public class MenuController : MonoBehaviour {
 
                 break;
             case "SaveRate":
+                if (Time.timeScale == 0) Time.timeScale = 1f;
                 PlayerPrefs.SetString("username", inputField.text);
                 FirebaseInit.Instance.SaveRanking(inputField.text, PlayerPrefs.GetInt("score", 0), PlayerPrefs.GetFloat("time", 0));
                 SCManager.Instance.LoadScene("Menu");

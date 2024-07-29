@@ -9,11 +9,8 @@ public class FirebaseInit : MonoBehaviour {
     public static FirebaseInit Instance;
     FirebaseController firebaseController;
     private int itemsPerPage = 10; // Número de elementos por página
-    private int currentPage = 0;
     public Transform contentPanel;
     public GameObject listItemPrefab; // Prefab del panel de cada fila
-    public Button nextPageButton;
-    public Button prevPageButton;
     List<Ranking> rankings;
 
     void Awake()
@@ -32,6 +29,7 @@ public class FirebaseInit : MonoBehaviour {
 
     public void LoadRanking()
     {
+        contentPanel = GameObject.Find("Content").transform;
         firebaseController.GetRanking();
     }
 
@@ -52,7 +50,7 @@ public class FirebaseInit : MonoBehaviour {
         int startItem = page * itemsPerPage;
         int endItem = Mathf.Min(startItem + itemsPerPage, rankings.Count);
 
-        int maxCount = PlayerPrefs.GetInt("maxCount", 0);
+        int maxCount = 120;
         for (int i = startItem; i < endItem; i++)
         {
             Ranking ranking = rankings[i];
@@ -64,21 +62,6 @@ public class FirebaseInit : MonoBehaviour {
             if (i == 1) newItem.transform.Find("Silver").gameObject.SetActive(true);
             if (i == 2) newItem.transform.Find("Bronze").gameObject.SetActive(true);
         }
-
-        //prevPageButton.interactable = page > 0;
-        //nextPageButton.interactable = endItem < rankings.Count;
-    }
-
-    private void NextPage()
-    {
-        currentPage++;
-        ShowPage(currentPage);
-    }
-
-    private void PrevPage()
-    {
-        currentPage--;
-        ShowPage(currentPage);
     }
 
     public string FormatTime(float time)

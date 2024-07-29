@@ -141,12 +141,12 @@ CharacterController:
   m_Enabled: 1
   serializedVersion: 3
   m_Height: 2
-  m_Radius: 0.5
+  m_Radius: 0.8
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: -0, y: 0, z: 0}
 --- !u!114 &6325230006603745467
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -174,11 +174,13 @@ MonoBehaviour:
   horizontalMove: 0
   verticalMove: 0
   player: {fileID: 8678114466677960216}
-  speed: 0
+  speed: 10
   mainCamera: {fileID: 0}
-  gravity: 9.8
+  gravity: 30
   fallVelocity: 0
-  jumpForce: 0
+  jumpForce: 15
+  damageInterval: 1
+  levelController: {fileID: 0}
 --- !u!1 &7312223765552031140
 GameObject:
   m_ObjectHideFlags: 0

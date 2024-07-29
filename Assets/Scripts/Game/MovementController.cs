@@ -114,11 +114,20 @@ public class MovementController : MonoBehaviour
         if (other.tag == "Enemy")
         {
             AudioManager.Instance.PlaySFX("damage");
+            float hp = GameObject.Find("Pointer").GetComponent<HPController>().GetHp();
             GameObject.Find("Pointer").GetComponent<HPController>().DecrementHp(20f);
-        }else if (other.tag == "Water")
+
+            if(hp <= 35)
+            {
+                Debug.Log("Shaking");
+                mainCamera.GetComponent<CameraShake>().Shake(0.5f, 0.7f);
+
+            }
+        }
+        else if (other.tag == "Water")
         {
             AudioManager.Instance.PlaySFX("water");
-            GameObject.Find("Pointer").GetComponent<HPController>().IncrementHp(10f);
+            GameObject.Find("Pointer").GetComponent<HPController>().IncrementHp(15f);
             Destroy(other.transform.parent.gameObject);
         }else if(other.tag == "PickUp")
         {
@@ -137,7 +146,15 @@ public class MovementController : MonoBehaviour
             {
                 AudioManager.Instance.PlaySFX("damage");
                 lastDamageTime = Time.time;
+                float hp = GameObject.Find("Pointer").GetComponent<HPController>().GetHp();
                 GameObject.Find("Pointer").GetComponent<HPController>().DecrementHp(5f);
+
+                if (hp <= 35)
+                {
+                    Debug.Log("Shaking");
+                    mainCamera.GetComponent<CameraShake>().Shake(0.5f, 0.7f);
+
+                }
             }
         }
     }

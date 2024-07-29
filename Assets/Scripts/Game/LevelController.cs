@@ -12,12 +12,7 @@ public class LevelController : MonoBehaviour
 
     [SerializeField] TextMeshProUGUI _counterText;
     int counter = 0;
-    int maxCount = 0;
-
-    void Start()
-    {
-        maxCount = GameObject.FindGameObjectsWithTag("PickUp").Length;
-    }
+    int maxCount = 120;
 
     public void SetLevel(int level)
     {
@@ -39,7 +34,6 @@ public class LevelController : MonoBehaviour
     public void SaveCounter()
     {
         PlayerPrefs.SetInt("score", counter);
-        PlayerPrefs.SetInt("maxCount", maxCount);
         GameObject.Find("FinalCount").GetComponent<TextMeshProUGUI>().text = $"{counter.ToString("D3")}/{maxCount.ToString("D3")}";
     }
 }

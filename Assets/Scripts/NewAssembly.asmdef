@@ -1,0 +1,13 @@
+
+	{
+		"name": "Assembly",
+		"references": [
+			"Firebase.App",
+			"Firebase.Database",
+			"Unity.Localization",
+			"Unity.TextMeshPro",
+			"Unity.Addressables",
+			"Unity.ResourceManager"
+		],
+		"includePlatforms": []
+	}
