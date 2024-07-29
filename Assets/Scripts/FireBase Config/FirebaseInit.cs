@@ -50,7 +50,7 @@ public class FirebaseInit : MonoBehaviour {
         int startItem = page * itemsPerPage;
         int endItem = Mathf.Min(startItem + itemsPerPage, rankings.Count);
 
-        int maxCount = 120;
+        int maxCount = 300;
         for (int i = startItem; i < endItem; i++)
         {
             Ranking ranking = rankings[i];

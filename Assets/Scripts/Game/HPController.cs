@@ -38,6 +38,7 @@ public class HPController : MonoBehaviour
         }
         if (hp <= 0)
         {
+            AudioManager.Instance.PlaySFX("error");
             hp = 0;
             GameManager.Instance.GameOver();
         }

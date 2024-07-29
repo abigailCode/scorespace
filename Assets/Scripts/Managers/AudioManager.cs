@@ -26,6 +26,7 @@ public class AudioManager : MonoBehaviour {
         _sfxClips["fall"] = Resources.Load<AudioClip>("SFX/fallSFX");
         _sfxClips["water"] = Resources.Load<AudioClip>("SFX/water");
         _sfxClips["pickup"] = Resources.Load<AudioClip>("SFX/pickup");
+        _sfxClips["error"] = Resources.Load<AudioClip>("SFX/error");
     }
 
     void LoadMusicClips() {

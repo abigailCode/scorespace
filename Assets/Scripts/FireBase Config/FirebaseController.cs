@@ -60,6 +60,7 @@ public class FirebaseController {
                     string json = childSnapshot.GetRawJsonValue();
                     Ranking ranking = JsonUtility.FromJson<Ranking>(json);
                     rankings.Add(ranking);
+                    Debug.Log(ranking);
                 }
                 
             } else {
