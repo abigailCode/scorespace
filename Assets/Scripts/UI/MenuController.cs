@@ -61,19 +61,8 @@ public class MenuController : MonoBehaviour {
                 menuPanel.GetComponent<Animator>().enabled = false;
 
                 break;
-            case "SaveRate":
-                if (Time.timeScale == 0) Time.timeScale = 1f;
-                PlayerPrefs.SetString("username", inputField.text);
-                FirebaseInit.Instance.SaveRanking(inputField.text, PlayerPrefs.GetInt("score", 0), PlayerPrefs.GetFloat("time", 0));
-                SCManager.Instance.LoadScene("Menu");
-                break;
-            case "ShowRanking":
-                ranking.SetActive(true);
-                FirebaseInit.Instance.LoadRanking();
-                break;
-            case "HideRanking":
-                ranking.SetActive(false);
-                break;
+ 
+        
             case "GoToMenu":
                 if (Time.timeScale == 0) Time.timeScale = 1f;
                 SCManager.Instance.LoadScene("Menu");
@@ -108,12 +97,6 @@ public class MenuController : MonoBehaviour {
     public void ShowCredits() => menuController.PerformAction("ShowCredits");
 
     public void HideCredits() => menuController.PerformAction("HideCredits");
-
-    public void ShowRanking() => menuController.PerformAction("ShowRanking");
-
-    public void SaveRate() => menuController.PerformAction("SaveRate");
-
-    public void HideRanking() => menuController.PerformAction("HideRanking");
 
     public void GoToRanking() => menuController.PerformAction("GoToRanking");
 
